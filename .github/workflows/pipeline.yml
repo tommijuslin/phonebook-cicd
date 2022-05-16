@@ -30,10 +30,21 @@ jobs:
         if: ${{ !contains(join(github.event.commits.*.message), '#skip') }}
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          # oops
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: mysterious-escarpment-80403
           heroku_email: tommi.juslin@gmail.com
           healthcheck: http://mysterious-escarpment-80403.herokuapp.com/health
           checkstring: 'ok'
           rollbackonhealthcheckfailed: true
+      - name: deployment successful
+        uses: rjstone/discord-webhook-notify@v1
+        if: ${{ success() && !contains(join(github.event.commits.*.message), '#skip') }}
+        with:
+          severity: info
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+      - name: build failed
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
