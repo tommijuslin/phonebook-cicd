@@ -1,0 +1,7 @@
+POST https://pacific-brushlands-67315.herokuapp.com/api/persons
+Content-Type: application/json
+
+{
+  "name": "Tommi Juslin",
+  "number": "045-123456"
+}
