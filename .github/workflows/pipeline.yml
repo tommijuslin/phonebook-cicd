@@ -31,8 +31,8 @@ jobs:
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: tranquil-shelf-36453
+          heroku_app_name: pacific-brushlands-67315
           heroku_email: tommi.juslin@gmail.com
-          healthcheck: http://tranquil-shelf-36453.herokuapp.com/health
+          healthcheck: http://pacific-brushlands-67315.herokuapp.com/health
           checkstring: 'ok'
           rollbackonhealthcheckfailed: true
